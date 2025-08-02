@@ -105,7 +105,6 @@ const notesData = [
     archived: false,
   },
 ]; // data dumi yang disediakan
-
 class NoteItem extends HTMLElement {
     constructor() {
         super();
@@ -121,19 +120,20 @@ class NoteItem extends HTMLElement {
             </style>
             <h2></h2>
             <p></p>
+            <small></small>
         `;
     }
 
     set note(note) {
         this.shadowRoot.querySelector('h2').textContent = note.title;
         this.shadowRoot.querySelector('p').textContent = note.body;
+        this.shadowRoot.querySelector('small').textContent = `Dibuat pada: ${new Date(note.createdAt).toLocaleString()}`;
     }
 }
 
 customElements.define('note-item', NoteItem);
 
 const noteList = document.querySelector('.note-list');
-
 notesData.forEach((note) => {
     const noteItem = document.createElement('note-item');
     noteItem.note = note;
