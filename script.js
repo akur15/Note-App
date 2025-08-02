@@ -105,6 +105,17 @@ const notesData = [
     archived: false,
   },
 ]; // data dumi yang disediakan
+
+// Custom Element AppBar
+class AppBar extends HTMLElement {
+    constructor() {
+        super();
+        this.innerHTML = '<h1>Notes App</h1>';
+    }
+}
+customElements.define('app-bar', AppBar);
+
+// Custom Element NoteItem
 class NoteItem extends HTMLElement {
     constructor() {
         super();
@@ -130,12 +141,35 @@ class NoteItem extends HTMLElement {
         this.shadowRoot.querySelector('small').textContent = `Dibuat pada: ${new Date(note.createdAt).toLocaleString()}`;
     }
 }
-
 customElements.define('note-item', NoteItem);
 
-const noteList = document.querySelector('.note-list');
-notesData.forEach((note) => {
-    const noteItem = document.createElement('note-item');
-    noteItem.note = note;
-    noteList.appendChild(noteItem);
-});
+// Custom Element NoteList
+class NoteList extends HTMLElement {
+    constructor() {
+        super();
+    }
+
+    connectedCallback() {
+        notesData.forEach((note) => {
+            const noteItem = document.createElement('note-item');
+            noteItem.note = note;
+            this.appendChild(noteItem);
+        });
+    }
+}
+customElements.define('note-list', NoteList);
+
+// Custom Element NoteForm
+class NoteForm extends HTMLElement {
+    constructor() {
+        super();
+        this.innerHTML = `
+            <form>
+                <input type="text" id="title" placeholder="Judul catatan">
+                <textarea id="content" placeholder="Isi catatan"></textarea>
+                <button type="submit">Simpan</button>
+            </form>
+        `;
+    }
+}
+customElements.define('note-form', NoteForm);
