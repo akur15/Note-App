@@ -2,86 +2,100 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f0f0f0;
 }
 
-header {
+app-bar {
+    display: block;
     background-color: #333;
     color: #fff;
-    padding: 20px;
+    padding: 10px;
     text-align: center;
 }
 
-header h1 {
+app-bar h1 {
     margin: 0;
 }
 
-main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+note-list {
+    display: block;
     padding: 20px;
 }
 
-.note-list {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-    padding: 20px;
+note-item {
+    margin-bottom: 20px;
 }
 
-.note-item {
-    background-color: #C9E4CA;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.note-item h2 {
+note-item::shadow h2 {
+    font-size: 18px;
     margin-top: 0;
 }
 
-#note-form {
-    padding: 20px;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+note-item::shadow p {
+    font-size: 16px;
+    margin-bottom: 10px;
 }
 
-#note-form input, #note-form textarea {
-    width: 100%;
+note-item::shadow small {
+    font-size: 14px;
+    color: #666;
+}
+
+note-form {
+    display: block;
+    padding: 20px;
+}
+
+note-form form {
+    display: flex;
+    flex-direction: column;
+}
+
+note-form input[type="text"] {
     padding: 10px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
 
-#note-form button[type="submit"] {
+note-form textarea {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    height: 100px;
+    resize: vertical;
+}
+
+note-form button[type="submit"] {
+    padding: 10px;
     background-color: #333;
     color: #fff;
-    padding: 10px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
 }
 
-#note-form button[type="submit"]:hover {
+note-form button[type="submit"]:hover {
     background-color: #444;
 }
 
-@media only screen and (max-width: 768px) {
-    .note-list {
-        grid-template-columns: repeat(2, 1fr);
+@media (max-width: 768px) {
+    note-list {
+        padding: 10px;
+    }
+    note-form {
+        padding: 10px;
     }
 }
 
-@media only screen and (max-width: 480px) {
-    .note-list {
-        grid-template-columns: repeat(1, 1fr);
+@media (max-width: 480px) {
+    app-bar {
+        padding: 5px;
     }
-    #note-form {
-        padding: 10px;
+    note-list {
+        padding: 5px;
+    }
+    note-form {
+        padding: 5px;
     }
 }
